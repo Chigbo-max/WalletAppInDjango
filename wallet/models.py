@@ -4,6 +4,7 @@ from uuid import uuid4
 from django.conf import settings
 
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Wallet(models.Model):
@@ -14,6 +15,7 @@ class Wallet(models.Model):
     def deposit(self, amount):
         if amount > Decimal("0.00"):
             self.balance += amount
+            self.save()
         return False
 
 class Transaction(models.Model):
@@ -32,3 +34,8 @@ class Transaction(models.Model):
     verified = models.BooleanField(default=False)
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='sender', null=True)
     receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='receiver', null=True)
+
+    def save(self, *args, **kwargs):
+        if self.sender is None and self.receiver is None:
+            raise ValidationError("Sender and receiver cannot be None")
+        super().save(*args, **kwargs)

@@ -1,5 +1,5 @@
 from django.db.models.signals import post_save
-from wallet.models import Wallet
+from .models import Wallet
 from django.conf import settings
 from django.dispatch import receiver
 

@@ -7,4 +7,9 @@ urlpatterns = [
 
     path('secondgreet/<str:name>', views.second_greeting, name='greet'),
 
+    path('fund/account', views.fund_wallet, name = 'fund_wallet'),
+
+    path('fund/verify', views.verify_fund, name = 'verify_fund'),
+
+    path('fund/make_transfer_to_another_wallet', views.make_transfer_to_another_wallet, name = 'make_transfer_to_another_wallet'),
 ]

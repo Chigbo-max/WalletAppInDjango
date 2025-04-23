@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -63,8 +64,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates']
-        ,
-        'APP_DIRS': True,
+        ,        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -123,6 +123,13 @@ DJOSER ={
         'user_delete' : 'user.serializers.UserDeleteSerializer',
     }
 }
+
+SIMPLE_JWT ={
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+}
+
+PAYSTACK_PUBLIC_KEY=os.getenv("PAYSTACK_KEY")
+PAYSTACK_SECRET_KEY=os.getenv("PAYSTACK_SECRET_KEY")
 
 
 # Internationalization
