@@ -11,5 +11,5 @@ urlpatterns = [
 
     path('fund/verify', views.verify_fund, name = 'verify_fund'),
 
-    path('fund/make_transfer_to_another_wallet', views.make_transfer_to_another_wallet, name = 'make_transfer_to_another_wallet'),
+    path('fund/transfer', views.transfer, name = 'transfer'),
 ]
