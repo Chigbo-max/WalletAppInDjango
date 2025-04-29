@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 
-from wallet import models
 from django.db import models
 
 
